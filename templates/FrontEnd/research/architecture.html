@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Architecture | Sentinel IDS Research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/research/architecture.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-dot"></div>
+                Sentinel IDS
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Research Documentation</div>
+            <a href="{{ url_for('methodology') }}" class="nav-link">Methodology</a>
+            <a href="{{ url_for('contributions') }}" class="nav-link">Novel Contributions</a>
+            <a href="{{ url_for('architecture') }}" class="nav-link active">System Architecture</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Application Portals</div>
+            <a href="{{ url_for('home') }}" class="nav-link">Back to Home</a>
+            <a href="{{ url_for('dashboard') }}" class="nav-link">Live Dashboard</a>
+            <a href="{{ url_for('research_paper') }}" class="nav-link">Research Paper</a>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <span class="page-badge">Chapter 4</span>
+            <h1>System Architecture</h1>
+            <p class="header-desc">A high-level structural overview detailing data flow from the client interface down to the machine learning engine.</p>
+        </header>
+
+        <div class="architecture-container">
+            
+            <div class="arch-node node-frontend">
+                <div class="arch-node-title">Frontend UI</div>
+                <div class="arch-node-subtitle">HTML / CSS / JS</div>
+            </div>
+
+            <div class="connector">
+                <div class="line-vertical" style="height: 40px;"></div>
+                <div class="arrow-down"></div>
+                <div class="api-label">REST API</div>
+            </div>
+
+            <div class="arch-node node-backend">
+                <div class="arch-node-title">FastAPI Backend</div>
+                <div class="arch-node-subtitle">Python API Layer</div>
+            </div>
+
+            <div class="connector">
+                <div class="line-vertical" style="height: 20px;"></div>
+            </div>
+
+            <div class="services-row">
+                
+                <div class="service-branch">
+                    <div class="arrow-down"></div>
+                    <div class="arch-node node-service">
+                        <div class="arch-node-title">Prediction Engine</div>
+                        <div class="arch-node-subtitle">Inference Routing</div>
+                    </div>
+                    
+                    <div class="connector">
+                        <div class="line-vertical"></div>
+                        <div class="arrow-down"></div>
+                    </div>
+                    
+                    <div class="arch-node node-ml">
+                        <div class="arch-node-title">ML & DL Engine</div>
+                        <div class="arch-node-subtitle">LSTM + XGBoost + LightGBM</div>
+                    </div>
+
+                    <div class="connector">
+                        <div class="line-vertical"></div>
+                        <div class="arrow-down"></div>
+                    </div>
+
+                    <div class="arch-node node-db">
+                        <div class="arch-node-title">SQLite / Postgres</div>
+                        <div class="arch-node-subtitle">Flows & Predictions Data</div>
+                    </div>
+                </div>
+
+                <div class="connector connector-mobile"><div class="line-vertical"></div><div class="arrow-down"></div></div>
+
+                <div class="service-branch">
+                    <div class="arrow-down"></div>
+                    <div class="arch-node node-service">
+                        <div class="arch-node-title">Dataset Service</div>
+                        <div class="arch-node-subtitle">Data Ingestion</div>
+                    </div>
+                </div>
+
+                <div class="connector connector-mobile"><div class="line-vertical"></div><div class="arrow-down"></div></div>
+
+                <div class="service-branch">
+                    <div class="arrow-down"></div>
+                    <div class="arch-node node-service">
+                        <div class="arch-node-title">Threat Intel Service</div>
+                        <div class="arch-node-subtitle">IOC Feeds</div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 24px; color: var(--text-primary);">Component Breakdown</h2>
+        
+        <div class="details-grid">
+            <div class="detail-card" style="border-left-color: #3b82f6;">
+                <h3>Presentation Tier (Frontend UI)</h3>
+                <p>A lightweight, dependency-free interface built using Vanilla HTML, CSS, and JavaScript. It serves the Live Dashboard, Dataset Explorer, and Explainable AI (XAI) visualizer, providing real-time interactions without the overhead of heavy frameworks.</p>
+            </div>
+
+            <div class="detail-card" style="border-left-color: #10b981;">
+                <h3>Application Tier (FastAPI Backend)</h3>
+                <p>A robust Python-based API layer operating on the FastAPI framework. It acts as the central gateway, securely routing HTTP REST API requests from the frontend client to the appropriate backend microservices.</p>
+            </div>
+
+            <div class="detail-card" style="border-left-color: #8b5cf6;">
+                <h3>Service Modules</h3>
+                <p>The business logic is decoupled into three main services: The <strong>Dataset Service</strong> handles incoming network flow data parsing; the <strong>Threat Intel Service</strong> manages external Indicator of Compromise (IOC) feeds; and the <strong>Prediction Engine</strong> pre-processes data windows for inference.</p>
+            </div>
+
+            <div class="detail-card" style="border-left-color: #ef4444;">
+                <h3>AI & Machine Learning Engine</h3>
+                <p>Sequential Intelligence (Temporal Modeling): The architecture employs LSTM units to capture long-range temporal dependencies.
+
+                    Ensemble Baseline (Predictive Power): High-speed, high-performance classification is driven by an ensemble of XGBoost and LightGBM. This combination optimizes inference speed while maximizing predictive accuracy across diverse threat datasets.</p>
+            </div>
+
+            <div class="detail-card" style="border-left-color: #f59e0b;">
+                <h3>Data Persistence Tier</h3>
+                <p>For development and initial lab testing, SQLite is utilized for rapid prototyping. For production deployment, the system is designed to interface with PostgreSQL to handle large volumes of high-velocity network flow logs and prediction histories reliably.</p>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

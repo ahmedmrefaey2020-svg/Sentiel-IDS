@@ -1,0 +1,403 @@
+        :root {
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --border-color: #e2e8f0;
+            --accent-color: #020617;
+            --brand-color: #000000;
+            --brand-light: #eff6ff;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --purple-color: #8b5cf6;
+            --radius-lg: 16px;
+            --radius-sm: 8px;
+            --sidebar-width: 280px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.7;
+            display: flex;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--surface-color);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .sidebar-header {
+            padding: 32px 24px 24px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .logo {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--brand-color);
+            border-radius: 50%;
+        }
+
+        .nav-section {
+            padding: 0 16px;
+            margin-bottom: 24px;
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            padding-left: 12px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover:not(.active) {
+            background-color: #f1f5f9;
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            background-color: var(--brand-light);
+            color: var(--brand-color);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 50px 80px;
+            max-width: 1200px;
+        }
+
+        .page-badge {
+            display: inline-block;
+            background-color: var(--brand-color);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 30px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        header {
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .header-desc {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+        }
+
+        /* ---------------------------------------------------
+           ARCHITECTURE DIAGRAM CSS
+           --------------------------------------------------- */
+        .architecture-container {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 60px;
+            overflow-x: auto;
+        }
+
+        .arch-node {
+            background-color: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            width: 260px;
+            padding: 16px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .arch-node:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--brand-color);
+        }
+
+        .arch-node-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .arch-node-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: monospace;
+        }
+
+        /* Color variations for tiers */
+        .node-frontend {
+            border-top: 4px solid #3b82f6;
+        }
+
+        .node-backend {
+            border-top: 4px solid #10b981;
+        }
+
+        .node-service {
+            border-top: 4px solid #8b5cf6;
+            width: 220px;
+        }
+
+        .node-ml {
+            border-top: 4px solid #ef4444;
+        }
+
+        .node-db {
+            border-top: 4px solid #f59e0b;
+        }
+
+        /* Connectors (Arrows & Lines) */
+        .connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 12px 0;
+            position: relative;
+        }
+
+        .line-vertical {
+            width: 2px;
+            height: 30px;
+            background-color: #cbd5e1;
+        }
+
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #cbd5e1;
+        }
+
+        .api-label {
+            background-color: #f1f5f9;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Branching container for services */
+        .services-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        /* The top horizontal line connecting the 3 services */
+        .services-row::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 220px);
+            /* width to connect the centers of side boxes */
+            height: 2px;
+            background-color: #cbd5e1;
+        }
+
+        /* Individual vertical lines dropping down to services */
+        .service-branch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .service-branch::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            width: 2px;
+            height: 20px;
+            background-color: #cbd5e1;
+        }
+
+        .service-branch .arrow-down {
+            position: absolute;
+            top: 0;
+        }
+
+        /* ---------------------------------------------------
+           COMPONENT DETAILS SECTION
+           --------------------------------------------------- */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .detail-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--brand-color);
+            padding: 24px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .detail-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .detail-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            main {
+                padding: 40px;
+            }
+
+            .services-row {
+                gap: 20px;
+            }
+
+            .node-service {
+                width: 180px;
+            }
+
+            .services-row::before {
+                width: calc(100% - 180px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            aside {
+                position: relative;
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            main {
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .services-row {
+                flex-direction: column;
+                gap: 0;
+                margin-top: 0;
+            }
+
+            .services-row::before {
+                display: none;
+            }
+
+            .service-branch::before {
+                display: none;
+            }
+
+            .service-branch .arrow-down {
+                display: none;
+            }
+
+            .service-branch {
+                margin-bottom: 0;
+            }
+
+            .connector-mobile {
+                display: flex !important;
+            }
+
+            .arch-node {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        .connector-mobile {
+            display: none;
+        }

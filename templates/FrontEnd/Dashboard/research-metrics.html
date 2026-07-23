@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Metrics | Predictive IDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/Dashboard/research-metrics.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="logo">
+            <div class="logo-dot"></div>
+            Sentinel IDS
+        </div>
+        <nav>
+            <a href="{{ url_for('dashboard') }}" class="nav-link">Overview</a>
+            <a href="{{ url_for('network_traffic') }}" class="nav-link">Network Traffic</a>
+            <a href="{{ url_for('threat_intelligence') }}" class="nav-link">Threat Intelligence</a>
+            <a href="{{ url_for('xai_dashboard') }}" class="nav-link">Explainable AI (XAI)</a>
+            <a href="{{ url_for('prediction_timeline') }}" class="nav-link">Prediction Timeline</a>
+            <a href="{{ url_for('research_metrics') }}" class="nav-link active">Research Metrics</a>
+            <a href="{{ url_for('dataset_explorer') }}" class="nav-link">Dataset Explorer</a>
+            <a href="{{ url_for('settings') }}" class="nav-link">Settings</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <h1>Research & Evaluation Metrics</h1>
+            <p class="header-desc">Deep dive into model performance, confidence intervals, and algorithm comparisons.</p>
+        </header>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Live Attack Prediction Tracking with 95% Confidence Interval</div>
+                <div style="font-size: 0.85rem; color: var(--brand-color); font-weight: 500;">Dynamic Canvas Rendering</div>
+            </div>
+            
+            <div class="graph-wrapper">
+                <canvas id="metricsChart"></canvas>
+            </div>
+            
+            <div class="graph-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--brand-color);"></div>
+                    <span>LSTM Prediction Probability</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--brand-light); border: 1px dashed var(--brand-color);"></div>
+                    <span>95% Confidence Interval (± Bounds)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Algorithm Comparison</div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>F1-Score</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>Latency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="best-model">
+                                <td style="font-weight: 600; color: var(--text-primary);">LSTM (Seq) <span class="badge-winner">Winner</span></td>
+                                <td>97.4%</td>
+                                <td>96.8%</td>
+                                <td>98.1%</td>
+                                <td>24ms</td>
+                            </tr>
+                            <tr>
+                                <td>XGBoost</td>
+                                <td>95.2%</td>
+                                <td>94.5%</td>
+                                <td>96.0%</td>
+                                <td>12ms</td>
+                            </tr>
+                            <tr>
+                                <td>Random Forest</td>
+                                <td>92.8%</td>
+                                <td>93.1%</td>
+                                <td>92.5%</td>
+                                <td>18ms</td>
+                            </tr>
+                            <tr>
+                                <td>Logistic Regression</td>
+                                <td>81.5%</td>
+                                <td>80.2%</td>
+                                <td>83.0%</td>
+                                <td>5ms</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 16px; font-size: 0.85rem; color: var(--text-secondary);">
+                    * Evaluated on custom Lab Dataset holding 100k network flows. LSTM provides the highest Recall for zero-day attacks.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Global SHAP Value Distribution</div>
+                </div>
+                
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+                    Distribution of feature impact across the entire dataset. Wider spread indicates higher influence on model predictions.
+                </p>
+
+                <div class="shap-container">
+                    <div class="shap-row">
+                        <div class="shap-name">Flow Duration</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-magnitude" style="left: 30%; width: 55%;"></div>
+                        </div>
+                    </div>
+                    <div class="shap-row">
+                        <div class="shap-name">SYN Packet Rate</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-magnitude" style="left: 40%; width: 45%;"></div>
+                        </div>
+                    </div>
+                    <div class="shap-row">
+                        <div class="shap-name">Bwd Packet Len Max</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-magnitude" style="left: 45%; width: 30%;"></div>
+                        </div>
+                    </div>
+                    <div class="shap-row">
+                        <div class="shap-name">Dest Port Div</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-magnitude" style="left: 35%; width: 25%;"></div>
+                        </div>
+                    </div>
+                    <div class="shap-row">
+                        <div class="shap-name">ACK Flag Count</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-magnitude" style="left: 48%; width: 15%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="shap-scale">
+                    <span>Negative Impact (Normal)</span>
+                    <span style="position: absolute; left: 50%; transform: translateX(-50%);">0</span>
+                    <span>Positive Impact (Attack)</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', path='/js/Dashboard/research-metrics.js') }}"></script>
+
+</body>
+</html>

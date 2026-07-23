@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | Predictive IDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/Dashboard/settings.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="logo">
+            <div class="logo-dot"></div>
+            Sentinel IDS
+        </div>
+        <nav>
+            <a href="{{ url_for('dashboard') }}" class="nav-link">Overview</a>
+            <a href="{{ url_for('network_traffic') }}" class="nav-link">Network Traffic</a>
+            <a href="{{ url_for('threat_intelligence') }}" class="nav-link">Threat Intelligence</a>
+            <a href="{{ url_for('xai_dashboard') }}" class="nav-link">Explainable AI (XAI)</a>
+            <a href="{{ url_for('prediction_timeline') }}" class="nav-link">Prediction Timeline</a>
+            <a href="{{ url_for('research_metrics') }}" class="nav-link">Research Metrics</a>
+            <a href="{{ url_for('dataset_explorer') }}" class="nav-link">Dataset Explorer</a>
+            <a href="{{ url_for('settings') }}" class="nav-link active">Settings</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <h1>System Settings</h1>
+            <p class="header-desc">Manage your account, notification preferences, and model configuration.</p>
+        </header>
+
+        <div class="settings-container">
+            
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2 class="section-title">General Information</h2>
+                    <p class="section-subtitle">Your personal account and organization details.</p>
+                </div>
+                <div class="form-group">
+                    <label>Organization Name</label>
+                    <input type="text" value="Acme Corp Network" id="orgName">
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Admin Email Address</label>
+                        <input type="email" value="admin@acmecorp.com" id="adminEmail">
+                    </div>
+                    <div class="form-group">
+                        <label>Timezone</label>
+                        <select id="timezone">
+                            <option value="UTC">UTC (Coordinated Universal Time)</option>
+                            <option value="EST" selected>EST (Eastern Standard Time)</option>
+                            <option value="EET">EET (Eastern European Time)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2 class="section-title">Alert & Notification Preferences</h2>
+                    <p class="section-subtitle">Control how and when you receive predictive threat alerts.</p>
+                </div>
+                
+                <div class="toggle-row">
+                    <div class="toggle-info">
+                        <h4>Push Notifications (Dashboard)</h4>
+                        <p>Receive real-time alerts in the browser when active.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="pushToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="toggle-row" style="border-top: 1px solid var(--border-color);">
+                    <div class="toggle-info">
+                        <h4>Email Alerts (Critical Only)</h4>
+                        <p>Send an immediate email for threats with severity > High.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="emailToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="toggle-row" style="border-top: 1px solid var(--border-color);">
+                    <div class="toggle-info">
+                        <h4>Automated Countermeasures</h4>
+                        <p>Allow the system to automatically drop IPs identified as malicious.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="autoBlockToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2 class="section-title">Monitoring Mode Selection</h2>
+                    <p class="section-subtitle">Choose between local packet sniffing and remote agent telemetry.</p>
+                </div>
+                <div class="form-group">
+                    <label>Telemetry Source</label>
+                    <select id="monitoringMode">
+                        <option value="scapy">Local Sniffing (Scapy Mode)</option>
+                        <option value="api_agent">Remote Agent (API Key Mode)</option>
+                    </select>
+                </div>
+                <div class="form-group token-group">
+                    <label class="token-label">API Key / Token</label>
+                    <div class="token-input-wrapper">
+                        <input type="password" placeholder="Enter your API key or token here" id="apiToken" style="flex: 1; width: 100%; height: 50px; border-radius: 8px; border: 1px solid var(--border-color); padding: 0 12px; font-size: 0.95rem; background-color: var(--input-bg); color: var(--text-primary); text-overflow: ellipsis; overflow: hidden;">
+                    </div>
+                </div>
+                <div class="actions-bar actions-start">
+                    <a id="downloadAgentBtn" class="btn btn-primary download-agent-btn">Download Agent</a>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2 class="section-title">Detection Engine (AI Model)</h2>
+                    <p class="section-subtitle">Configure the underlying Machine Learning parameters.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>Active Prediction Model</label>
+                    <select id="activeModel">
+                        <option value="lstm" selected>LSTM Sequence Model (Recommended for Time-Series)</option>
+                        <option value="rf">Random Forest (Baseline ML)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-top: 32px;">
+                    <div class="range-header">
+                        <label style="margin: 0;">Alert Confidence Threshold</label>
+                        <span class="range-value" id="thresholdValue">85%</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">Only trigger alerts when the model's confidence exceeds this value.</p>
+                    <input type="range" min="50" max="99" value="85" id="confidenceSlider">
+                </div>
+            </div>
+
+            <div class="actions-bar">
+                <button type="button" class="btn btn-outline" id="btnCancel">Discard Changes</button>
+                <button type="button" class="btn btn-primary" id="btnSave">Save Configuration</button>
+            </div>
+            
+        </div>
+    </main>
+
+    <div class="toast" id="toastBox">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <span>Settings successfully updated.</span>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/Dashboard/settings.js') }}"></script>
+</body>
+</html>

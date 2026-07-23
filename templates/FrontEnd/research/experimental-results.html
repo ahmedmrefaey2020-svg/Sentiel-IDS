@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimental Results | Sentinel IDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/research/experimental-results.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-dot"></div>
+                Sentinel IDS
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Research Documentation</div>
+            <a href="{{url_for('home')}}" class="nav-link">Proposal Overview</a>
+            <a href="{{url_for('methodology')}}" class="nav-link">Methodology</a>
+            <a href="{{url_for('contributions')}}" class="nav-link">Novel Contributions</a>
+            <a href="{{url_for('architecture')}}" class="nav-link">System Architecture</a>
+            <a href="{{url_for('experimental_results')}}" class="nav-link active">Experimental Results</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Application Portals</div>
+            <a href="{{url_for('home')}}" class="nav-link">Back to Home</a>
+            <a href="{{url_for('dashboard')}}" class="nav-link">Live Dashboard</a>
+            <a href="{{url_for('dataset_explorer')}}" class="nav-link">Dataset Explorer</a>
+            <a href="{{url_for('research_metrics')}}" class="nav-link">Research Metrics</a>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <span class="page-badge">Model Evaluation</span>
+            <h1>Experimental Results</h1>
+            <p class="header-desc">Comprehensive performance metrics, prediction horizon analysis, and classification matrices for the deployed LSTM sequence model.</p>
+        </header>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-title">Accuracy</div>
+                <div class="metric-value"><span class="counter" data-target="96.5">0.0</span><span class="metric-symbol">%</span></div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Precision</div>
+                <div class="metric-value"><span class="counter" data-target="96.8">0.0</span><span class="metric-symbol">%</span></div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Recall (Sensitivity)</div>
+                <div class="metric-value"><span class="counter" data-target="98.1">0.0</span><span class="metric-symbol">%</span></div>
+            </div>
+            <div class="metric-card f1">
+                <div class="metric-title">F1 Score</div>
+                <div class="metric-value"><span class="counter" data-target="97.4">0.0</span><span class="metric-symbol">%</span></div>
+            </div>
+            <div class="metric-card horizon">
+                <div class="metric-title">Avg Prediction Horizon</div>
+                <div class="metric-value"><span class="counter" data-target="42.5">0.0</span><span class="metric-symbol">sec</span></div>
+            </div>
+        </div>
+
+        <div class="charts-layout">
+            
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div>
+                        <div class="chart-title">Confusion Matrix</div>
+                        <div class="chart-subtitle">Evaluated on 100k Test Network Flows</div>
+                    </div>
+                </div>
+
+                <div class="cm-wrapper">
+                    <div class="cm-grid">
+                        <div class="cm-label-top">Predicted Class</div>
+                        <div class="cm-label-left">Actual Class</div>
+
+                        <div></div>
+                        <div class="cm-col-label">Normal</div>
+                        <div class="cm-col-label">Attack</div>
+
+                        <div class="cm-row-label">Normal</div>
+                        <div class="cm-cell cm-tn" title="True Negative (Correctly predicted normal traffic)">
+                            <span>TN</span>
+                            85,432
+                        </div>
+                        <div class="cm-cell cm-fp" title="False Positive (Normal traffic falsely flagged as attack)">
+                            <span>FP</span>
+                            1,204
+                        </div>
+
+                        <div class="cm-row-label">Attack</div>
+                        <div class="cm-cell cm-fn" title="False Negative (Missed attack)">
+                            <span>FN</span>
+                            389
+                        </div>
+                        <div class="cm-cell cm-tp" title="True Positive (Correctly predicted attack)">
+                            <span>TP</span>
+                            12,975
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+                    High True Negative (TN) and True Positive (TP) values indicate the model successfully separates benign traffic from malicious signatures with minimal false alarms.
+                </div>
+            </div>
+
+            <div class="chart-card" style="position: relative;">
+                <div class="chart-header">
+                    <div>
+                        <div class="chart-title">Receiver Operating Characteristic (ROC)</div>
+                        <div class="chart-subtitle">LSTM Classifier Performance</div>
+                    </div>
+                </div>
+
+                <div class="roc-container">
+                    <div class="y-axis-title">True Positive Rate (Sensitivity)</div>
+                    <div class="x-axis-title">False Positive Rate (1 - Specificity)</div>
+                    
+                    <svg class="roc-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <line x1="0" y1="20" x2="100" y2="20" class="roc-grid-line" />
+                        <line x1="0" y1="40" x2="100" y2="40" class="roc-grid-line" />
+                        <line x1="0" y1="60" x2="100" y2="60" class="roc-grid-line" />
+                        <line x1="0" y1="80" x2="100" y2="80" class="roc-grid-line" />
+                        
+                        <line x1="20" y1="0" x2="20" y2="100" class="roc-grid-line" />
+                        <line x1="40" y1="0" x2="40" y2="100" class="roc-grid-line" />
+                        <line x1="60" y1="0" x2="60" y2="100" class="roc-grid-line" />
+                        <line x1="80" y1="0" x2="80" y2="100" class="roc-grid-line" />
+
+                        <line x1="0" y1="100" x2="100" y2="100" class="roc-axis-line" />
+                        <line x1="0" y1="0" x2="0" y2="100" class="roc-axis-line" />
+
+                        <text x="-5" y="100" class="roc-axis-label" text-anchor="end">0.0</text>
+                        <text x="-5" y="50" class="roc-axis-label" text-anchor="end">0.5</text>
+                        <text x="-5" y="3" class="roc-axis-label" text-anchor="end">1.0</text>
+                        
+                        <text x="50" y="112" class="roc-axis-label" text-anchor="middle">0.5</text>
+                        <text x="100" y="112" class="roc-axis-label" text-anchor="middle">1.0</text>
+
+                        <line x1="0" y1="100" x2="100" y2="0" class="roc-random-line" />
+
+                        <path class="roc-area" d="M 0 100 L 0 100 L 2 15 C 5 2, 15 0, 100 0 L 100 100 Z" />
+
+                        <path class="roc-curve-path" d="M 0 100 L 2 15 C 5 2, 15 0, 100 0" />
+                    </svg>
+
+                    <div class="auc-badge">
+                        <div class="auc-val">0.98</div>
+                        <div class="auc-lbl">AUC Score</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', path='/js/research/experimental-results.js') }}"></script>
+</body>
+</html>

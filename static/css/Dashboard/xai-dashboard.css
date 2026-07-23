@@ -1,0 +1,309 @@
+:root {
+    --bg-color: #f9fafb;        /* لون خلفية أفتح وأكثر راحة */
+    --surface-color: #ffffff;   /* الأبيض الصريح للعناصر */
+    --text-primary: #111827;    /* رمادي غامق جداً (أفضل من الأسود الصريح) */
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;    /* حدود واضحة وغير مزعجة */
+    --accent-color: #06b6d4;
+    --brand-color: #2563eb;     /* أزرق أكثر عمقاً */
+    --success-color: #059669;
+    --danger-color: #dc2626;
+    --warning-color: #d97706;
+    --radius-lg: 12px;
+    --radius-sm: 6px;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        aside {
+            width: 260px;
+            background-color: var(--surface-color);
+            border-right: 1px solid var(--border-color);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 48px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link.active {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .nav-link:hover:not(.active) {
+            background-color: #f9fafb;
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 40px 48px;
+            overflow-y: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--brand-color);
+            background-color: var(--brand-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        /* Layout Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 24px;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Local Explanation (SHAP style) */
+        .incident-info {
+            background-color: #f9fafb;
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .incident-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--danger-color);
+            margin-bottom: 4px;
+        }
+
+        .incident-meta {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 16px;
+        }
+
+        .shap-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .shap-label {
+            width: 140px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .shap-value {
+            width: 60px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: right;
+            margin-right: 16px;
+            font-family: monospace;
+        }
+
+        .shap-bar-container {
+            flex: 1;
+            height: 24px;
+            background-color: #f3f4f6;
+            border-radius: 4px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* The center line for positive/negative impact */
+        .shap-bar-container::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -4px;
+            bottom: -4px;
+            width: 1px;
+            background-color: #d1d5db;
+            z-index: 1;
+        }
+
+        .shap-bar {
+            height: 100%;
+            border-radius: 4px;
+            position: absolute;
+            transition: width 0.5s ease;
+        }
+
+        .shap-red {
+            background-color: rgba(239, 68, 68, 0.85);
+            /* Danger */
+            left: 50%;
+        }
+
+        .shap-green {
+            background-color: rgba(16, 185, 129, 0.85);
+            /* Success */
+            right: 50%;
+        }
+
+        .impact-legend {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            padding-left: 216px;
+            /* Align with bars */
+        }
+
+        /* Global Feature Importance */
+        .feature-item {
+            margin-bottom: 20px;
+        }
+
+        .feature-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-name {
+            font-weight: 500;
+        }
+
+        .feature-score {
+            color: var(--text-secondary);
+        }
+
+        .feature-track {
+            width: 100%;
+            height: 8px;
+            background-color: #f3f4f6;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .feature-fill {
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 20px;
+            }
+
+            main {
+                padding: 24px;
+            }
+
+            .shap-label {
+                width: 100px;
+            }
+
+            .impact-legend {
+                padding-left: 176px;
+            }
+        }

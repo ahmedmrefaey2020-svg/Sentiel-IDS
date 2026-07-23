@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Timeline | Predictive IDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/Dashboard/prediction-timeline.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="logo">
+            <div class="logo-dot"></div>
+            Sentinel IDS
+        </div>
+        <nav>
+            <a href="{{ url_for('dashboard') }}" class="nav-link">Overview</a>
+            <a href="{{ url_for('network_traffic') }}" class="nav-link">Network Traffic</a>
+            <a href="{{ url_for('threat_intelligence') }}" class="nav-link">Threat Intelligence</a>
+            <a href="{{ url_for('xai_dashboard') }}" class="nav-link">Explainable AI (XAI)</a>
+            <a href="{{ url_for('prediction_timeline') }}" class="nav-link active">Prediction Timeline</a>
+            <a href="{{ url_for('research_metrics') }}" class="nav-link">Research Metrics</a>
+            <a href="{{ url_for('dataset_explorer') }}" class="nav-link">Dataset Explorer</a>
+            <a href="{{ url_for('settings') }}" class="nav-link">Settings</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <h1>Attack Forecast Timeline</h1>
+            <div class="status-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Real-Time Forecasting
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Prediction Horizon: Target IP 192.168.1.105</div>
+                    <div class="card-subtitle">Tracking anomalous behavior escalating towards a potential attack.</div>
+                </div>
+
+                <div class="timeline-container">
+                    <div class="timeline-track"></div>
+                    <div class="timeline-progress" id="timeProgress"></div>
+
+                    <div class="timeline-step">
+                        <div class="step-time">T-60s</div>
+                        <div class="step-circle" id="circle-0"></div>
+                        <div class="step-prob" id="prob-0">12%</div>
+                        <div class="step-label">Initial Scan</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-time">T-45s</div>
+                        <div class="step-circle" id="circle-1"></div>
+                        <div class="step-prob" id="prob-1">--</div>
+                        <div class="step-label">Reconnaissance</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-time">T-30s</div>
+                        <div class="step-circle" id="circle-2"></div>
+                        <div class="step-prob" id="prob-2">--</div>
+                        <div class="step-label">Resource Spike</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-time">T-15s</div>
+                        <div class="step-circle" id="circle-3"></div>
+                        <div class="step-prob" id="prob-3">--</div>
+                        <div class="step-label">Payload Prep</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-time">T-0s</div>
+                        <div class="step-circle" id="circle-4"></div>
+                        <div class="step-prob" id="prob-4">--</div>
+                        <div class="step-label">Attack Trigger</div>
+                    </div>
+                </div>
+
+                <div class="forecast-banner" id="forecastBanner">
+                    <div class="forecast-details">
+                        <h3 id="forecastTitle">Monitoring Normal Traffic</h3>
+                        <p id="forecastDesc">No significant anomalies detected in the current time window.</p>
+                    </div>
+                    <div class="probability-display" id="mainProbability">12%</div>
+                </div>
+
+                <div class="log-container">
+                    <h4 style="margin-bottom: 16px; font-size: 0.95rem; font-weight: 600;">System Event Log</h4>
+                    <ul class="log-list" id="eventLog">
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', path='/js/Dashboard/prediction-timeline.js') }}"></script>
+
+</body>
+</html>

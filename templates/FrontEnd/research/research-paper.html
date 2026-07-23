@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Paper | Sentinel IDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/research/research-paper.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-dot"></div>
+                Sentinel IDS
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Research Documentation</div>
+            <a href="{{url_for('methodology')}}" class="nav-link">Methodology</a>
+            <a href="{{url_for('contributions')}}" class="nav-link">Novel Contributions</a>
+            <a href="{{url_for('architecture')}}" class="nav-link">System Architecture</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Application Portals</div>
+            <a href="{{url_for('home')}}" class="nav-link">Back to Home</a>
+            <a href="{{url_for('dashboard')}}" class="nav-link">Live Dashboard</a>
+            <a href="{{url_for('research_paper')}}" class="nav-link active">Official Research Paper</a>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <div>
+                <span class="page-badge">Document Viewer</span>
+                <h1>Official Research Paper</h1>
+                <p class="header-desc">Review the complete UGRF documentation, methodology, and empirical findings.</p>
+            </div>
+            
+            <a href="{{url_for('static', path='/assets/Sentinel_IDS_UGRF_8Pages.pdf')}}" download class="btn-download">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download PDF
+            </a>
+        </header>
+
+        <div class="abstract-card">
+            <h2 class="paper-title">Predictive Intrusion Detection System Using Network Behavioral Analysis and Machine Learning</h2>
+            
+            <div class="authors-list">
+                <div class="author">
+                    <span class="author-name">Member 1</span>
+                    <span class="author-role">Mohamed Soliman</span>
+                </div>
+                <div class="author">
+                    <span class="author-name">Member 2</span>
+                    <span class="author-role">Ahmed Mahmoud</span>
+                </div>
+                <div class="author">
+                    <span class="author-name">Member 3</span>
+                    <span class="author-role">Ahmed Mubarak</span>
+                </div>
+                <div class="author">
+                    <span class="author-name">Member 4</span>
+                    <span class="author-role">Yehia Allam</span>
+                </div>
+                <div class="author">
+                    <span class="author-name">Member 5</span>
+                    <span class="author-role">Gannah Mohamed</span>
+                </div>
+            </div>
+
+            <div class="abstract-label">Abstract</div>
+            <p class="abstract-text">
+                Most contemporary cybersecurity systems operate reactively, detecting breaches only after malicious activity has commenced. This research proposes "Sentinel IDS", a proactive Intrusion Detection System designed to forecast cyber attacks before they execute. By extracting and analyzing network traffic flows using Sliding Windows, the system leverages Long Short-Term Memory (LSTM) networks combined with an XGBoost baseline to predict attacks with an average prediction horizon of 42.5 seconds. Furthermore, the framework integrates Explainable AI (SHAP) to ensure algorithmic transparency, empowering SOC analysts to understand and trust the predictive alerts.
+            </p>
+        </div>
+
+        <div class="pdf-container">
+            <div class="pdf-fallback">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" style="margin-bottom: 16px;">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <h3>Document Viewer</h3>
+                <p>If the PDF does not display automatically in your browser,<br>please use the download button above.</p>
+            </div>
+
+            <iframe 
+                src="{{url_for('static', path='/assets/Sentinel_IDS_UGRF_8Pages.docx')}}" 
+                class="pdf-iframe" 
+                title="Research Paper PDF Viewer">
+            </iframe>
+        </div>
+
+    </main>
+
+</body>
+</html>

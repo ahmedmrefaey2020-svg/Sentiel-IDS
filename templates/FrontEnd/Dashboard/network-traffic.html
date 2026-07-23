@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Traffic | Predictive IDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/Dashboard/network-traffic.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="logo">
+            <div class="logo-dot"></div>
+            Sentinel IDS
+        </div>
+        <nav>
+            <a href="{{ url_for('dashboard') }}" class="nav-link">Overview</a>
+            <a href="{{ url_for('network_traffic') }}" class="nav-link active">Network Traffic</a>
+            <a href="{{ url_for('threat_intelligence') }}" class="nav-link">Threat Intelligence</a>
+            <a href="{{ url_for('xai_dashboard') }}" class="nav-link">Explainable AI (XAI)</a>
+            <a href="{{ url_for('prediction_timeline') }}" class="nav-link">Prediction Timeline</a>
+            <a href="{{ url_for('research_metrics') }}" class="nav-link">Research Metrics</a>
+            <a href="{{ url_for('dataset_explorer') }}" class="nav-link">Dataset Explorer</a>
+            <a href="{{ url_for('settings') }}" class="nav-link">Settings</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <h1>Network Traffic Analysis</h1>
+            <div class="live-status">
+                <div class="dot"></div>
+                Capturing Packets
+            </div>
+        </header>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-title">Inbound Traffic</div>
+                <div class="metric-value" id="inboundVal">0.0 <span class="metric-unit">Mbps</span></div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Outbound Traffic</div>
+                <div class="metric-value" id="outboundVal">0.0 <span class="metric-unit">Mbps</span></div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Avg Latency</div>
+                <div class="metric-value" id="latencyVal">24 <span class="metric-unit">ms</span></div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Dropped Packets</div>
+                <div class="metric-value" id="droppedVal" style="color: var(--danger-color);">0</div>
+            </div>
+        </div>
+
+        <div class="graph-section">
+            <div class="section-header">
+                <span>Real-Time Bandwidth Usage</span>
+                <span style="font-size: 0.875rem; color: var(--text-secondary);">Last 60 Seconds</span>
+            </div>
+            <div class="graph-container" id="graphContainer">
+                </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Source IP</th>
+                        <th>Destination IP</th>
+                        <th>Protocol</th>
+                        <th>Size</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="trafficLog">
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', path='/js/Dashboard/network-traffic.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

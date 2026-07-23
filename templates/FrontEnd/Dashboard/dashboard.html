@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | Predictive IDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/Dashboard/dashboard.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="logo">
+            <div class="logo-dot"></div>
+            Sentinel IDS
+        </div>
+        <nav>
+            <a href="#" class="nav-link active">Overview</a>
+            <a href="{{ url_for('network_traffic') }}" class="nav-link">Network Traffic</a>
+            <a href="{{ url_for('threat_intelligence') }}" class="nav-link">Threat Intelligence</a>
+            <a href="{{ url_for('xai_dashboard') }}" class="nav-link">Explainable AI (XAI)</a>
+            <a href="{{ url_for('prediction_timeline') }}" class="nav-link">Prediction Timeline</a>
+            <a href="{{ url_for('research_metrics') }}" class="nav-link">Research Metrics</a>
+            <a href="{{ url_for('dataset_explorer') }}" class="nav-link">Dataset Explorer</a>
+            <a href="{{ url_for('settings') }}" class="nav-link">Settings</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <h1>Real-Time Dashboard</h1>
+            <div class="live-indicator">
+                <div class="pulse"></div>
+                Live Monitoring active
+            </div>
+        </header>
+
+        <div class="alert-banner" id="predictionAlert">
+            <div class="alert-content">
+                <h3>⚠️ Predictive Warning: Potential DDoS Attack</h3>
+                <p>Confidence: 87% | Estimated onset: 45 seconds. Unusual SYN packet growth detected.</p>
+            </div>
+            <button class="btn-action">Deploy Countermeasures</button>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-title">Current Risk Score</div>
+                <div class="card-value risk-low" id="riskScore">
+                    12<span>%</span>
+                </div>
+                <div class="card-desc">System behavior is normal.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Active Connections</div>
+                <div class="card-value" id="activeConn">1,248</div>
+                <div class="card-desc">+4% in the last 5 minutes</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Packets / Sec</div>
+                <div class="card-value" id="packetRate">8,420</div>
+                <div class="card-desc">Average throughput</div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">Recent Network Activity</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Source IP</th>
+                        <th>Dest Port</th>
+                        <th>Protocol</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="activityTable">
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', path='/js/Dashboard/dashboard.js') }}"></script>
+</body>
+</html>

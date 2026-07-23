@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel Contributions | Sentinel IDS Research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/research/contributions.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-dot"></div>
+                Sentinel IDS
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Research Documentation</div>
+            <a href="{{url_for('methodology')}}" class="nav-link">Methodology</a>
+            <a href="{{url_for('contributions')}}" class="nav-link active">Novel Contributions</a>
+            <a href="{{url_for('architecture')}}" class="nav-link">System Architecture</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Application Portals</div>
+            <a href="{{url_for('home')}}" class="nav-link">Back to Home</a>
+            <a href="{{url_for('dashboard')}}" class="nav-link">Live Dashboard</a>
+            <a href="{{url_for('research_paper')}}" class="nav-link">Research Paper</a>
+        </div>
+    </aside>
+
+    <main>
+        <header style="border-bottom: none; margin-bottom: 0;">
+            <span class="page-badge">Chapter 5</span>
+        </header>
+
+        <div class="hero-section">
+            <h1 class="hero-title">Novel Contributions</h1>
+            <p class="hero-desc">This research introduces a predictive intrusion detection framework capable of forecasting cyber attacks before execution using temporal machine learning models and explainable artificial intelligence.</p>
+            
+            <div class="hero-grid">
+                <div class="hero-card">Predictive IDS</div>
+                <div class="hero-card">Prediction Horizon</div>
+                <div class="hero-card">Explainable Forecasting</div>
+                <div class="hero-card">Real-Time Threat Intel</div>
+            </div>
+        </div>
+
+        <div class="contrib-card">
+            <div class="contrib-header">
+                <h2 class="contrib-title">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--brand-color)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    Contribution 1: Predictive IDS Framework
+                </h2>
+                <p class="contrib-desc">Traditional intrusion detection systems identify attacks after they begin. Sentinel IDS introduces a predictive framework capable of forecasting malicious activity before attack execution.</p>
+            </div>
+            
+            <div class="badge-success">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Forecasting Enabled
+            </div>
+
+            <div class="flow-comparison">
+                <div class="flow-col">
+                    <div class="flow-title">Traditional IDS (Reactive)</div>
+                    <div class="flow-box">Attack Occurs</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box box-danger">Detection</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box">Response (Post-Breach)</div>
+                </div>
+                <div class="flow-col sentinel">
+                    <div class="flow-title">Sentinel IDS (Proactive)</div>
+                    <div class="flow-box">Suspicious Behavior</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box" style="border-color: var(--brand-color); color: var(--brand-color); font-weight: bold;">Prediction</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box box-success">Attack Prevention</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contrib-card">
+            <div class="contrib-header">
+                <h2 class="contrib-title">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--brand-color)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    Contribution 2: Prediction Horizon Metric
+                </h2>
+                <p class="contrib-desc">Sentinel IDS introduces attack forecasting through a prediction horizon metric that measures how early an attack can be identified before execution.</p>
+            </div>
+
+            <div style="background: #f8fafc; padding: 30px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); text-align: center;">
+                <div style="font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">Average Prediction Horizon</div>
+                <div class="metric-big">42.5 Seconds</div>
+                <div class="badge-success" style="background: #dbeafe; color: var(--brand-color); border-color: #bfdbfe;">Attack Forecast Lead Time: 42.5 Seconds</div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="dot"></div>
+                    <div class="step-text">Normal Activity</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="dot active"></div>
+                    <div class="step-text">Behavioral Anomaly</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="dot active" style="border-color: var(--warning-color); background: var(--warning-color); box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);"></div>
+                    <div class="step-text" style="color: var(--warning-color);">Prediction Alert</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="dot attack"></div>
+                    <div class="step-text" style="color: var(--danger-color);">Attack Execution</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contrib-card">
+            <div class="contrib-header">
+                <h2 class="contrib-title">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--brand-color)" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    Contribution 3: Explainable Forecasting Engine
+                </h2>
+                <p class="contrib-desc">Unlike traditional black-box deep learning systems, Sentinel IDS explains why attacks are predicted using SHAP-based explainable artificial intelligence.</p>
+            </div>
+
+            <div class="badge-purple">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                Model Transparency Active
+            </div>
+
+            <div class="shap-container">
+                <div class="shap-row">
+                    <div class="shap-name">Packet Rate</div>
+                    <div class="shap-track"><div class="shap-bar" style="width: 31%;"></div></div>
+                    <div class="shap-val">+31%</div>
+                </div>
+                <div class="shap-row">
+                    <div class="shap-name">SYN Packet Count</div>
+                    <div class="shap-track"><div class="shap-bar" style="width: 24%;"></div></div>
+                    <div class="shap-val">+24%</div>
+                </div>
+                <div class="shap-row">
+                    <div class="shap-name">Flow Duration</div>
+                    <div class="shap-track"><div class="shap-bar" style="width: 18%;"></div></div>
+                    <div class="shap-val">+18%</div>
+                </div>
+                <div class="shap-row">
+                    <div class="shap-name">Destination Port Diversity</div>
+                    <div class="shap-track"><div class="shap-bar" style="width: 12%;"></div></div>
+                    <div class="shap-val">+12%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contrib-card">
+            <div class="contrib-header">
+                <h2 class="contrib-title">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--brand-color)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    Contribution 4: Unified Cybersecurity Platform
+                </h2>
+                <p class="contrib-desc">The proposed platform integrates network monitoring, threat intelligence, attack prediction, explainability, and research analytics within a single environment.</p>
+            </div>
+
+            <div class="dash-features">
+                <div class="dash-tag">Network Traffic Analysis</div>
+                <div class="dash-tag">Threat Intelligence</div>
+                <div class="dash-tag">Prediction Timeline</div>
+                <div class="dash-tag">Explainable AI</div>
+                <div class="dash-tag">Research Metrics</div>
+                <div class="dash-tag">Dataset Explorer</div>
+            </div>
+
+            <div class="mock-browser">
+                <div class="mock-header">
+                    <div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+                </div>
+                <div class="mock-body">
+                    <div class="mock-box">
+                        <div class="mock-line"></div>
+                        <div class="mock-line short"></div>
+                        <div class="mock-graph" style="background: linear-gradient(to right bottom, #fca5a5, #fef2f2);"></div>
+                    </div>
+                    <div class="mock-box">
+                        <div class="mock-line"></div>
+                        <div class="mock-line"></div>
+                        <div class="mock-line"></div>
+                        <div class="mock-line short"></div>
+                        <div class="mock-graph"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contrib-card">
+            <div class="contrib-header">
+                <h2 class="contrib-title">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--brand-color)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Contribution 5: Research Evaluation Framework
+                </h2>
+                <p class="contrib-desc">The system provides extensive evaluation metrics to validate prediction quality and forecasting performance.</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-box"><h4>F1 Score</h4><div>97.4%</div></div>
+                <div class="metric-box"><h4>Precision</h4><div>96.8%</div></div>
+                <div class="metric-box"><h4>Recall</h4><div>98.1%</div></div>
+                <div class="metric-box"><h4>Latency</h4><div>24 ms</div></div>
+                <div class="metric-box"><h4>Early Warning Acc.</h4><div>94.2%</div></div>
+                <div class="metric-box"><h4>Prediction Horizon</h4><div>42.5 s</div></div>
+            </div>
+        </div>
+
+        <div class="contrib-card">
+            <div class="contrib-header">
+                <h2 class="contrib-title">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--brand-color)" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                    Contribution 6: Custom Dataset Generation
+                </h2>
+                <p class="contrib-desc">Sentinel IDS supports custom network traffic collection and labeling for predictive cybersecurity research.</p>
+            </div>
+
+            <div class="dataset-grid">
+                <div class="data-card">
+                    <div class="data-val">100,000+</div>
+                    <div class="data-label">Network Flows Captured</div>
+                </div>
+                <div class="data-card" style="background: #1e293b;">
+                    <div class="data-val" style="color: #a78bfa;">84</div>
+                    <div class="data-label">Extracted Features Per Row</div>
+                </div>
+            </div>
+
+            <div class="attack-tags">
+                <div class="att-tag">DDoS Attacks</div>
+                <div class="att-tag">Port Scans</div>
+                <div class="att-tag">Brute Force Attacks</div>
+                <div class="att-tag">Botnet Activity</div>
+            </div>
+        </div>
+
+        <div class="contrib-card">
+            <h2 class="contrib-title" style="font-size: 2rem;">Why Sentinel IDS?</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Traditional IDS</th>
+                        <th>Sentinel IDS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Attack Detection</td>
+                        <td class="icon-check">Yes</td>
+                        <td class="icon-check">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Attack Prediction</td>
+                        <td class="icon-cross">No</td>
+                        <td class="icon-check">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Prediction Horizon</td>
+                        <td class="icon-cross">No</td>
+                        <td class="icon-check">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Explainable AI</td>
+                        <td class="icon-cross">No</td>
+                        <td class="icon-check">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Threat Forecasting</td>
+                        <td class="icon-cross">No</td>
+                        <td class="icon-check">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Research Evaluation</td>
+                        <td class="icon-cross">No</td>
+                        <td class="icon-check">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Unified Platform</td>
+                        <td class="icon-cross">No</td>
+                        <td class="icon-check">Yes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="summary-banner">
+            <h2>Sentinel IDS transforms intrusion detection from reactive defense into proactive cyber threat forecasting.</h2>
+            <div class="banner-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Research Contribution Verified
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

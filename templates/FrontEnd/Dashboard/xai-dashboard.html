@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explainable AI (XAI) | Predictive IDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/Dashboard/xai-dashboard.css') }}">
+</head>
+<body>
+
+    <aside>
+        <div class="logo">
+            <div class="logo-dot"></div>
+            Sentinel IDS
+        </div>
+        <nav>
+            <a href="{{ url_for('dashboard') }}" class="nav-link">Overview</a>
+            <a href="{{ url_for('network_traffic') }}" class="nav-link">Network Traffic</a>
+            <a href="{{ url_for('threat_intelligence') }}" class="nav-link">Threat Intelligence</a>
+            <a href="{{ url_for('xai_dashboard') }}" class="nav-link active">Explainable AI (XAI)</a>
+            <a href="{{ url_for('prediction_timeline') }}" class="nav-link">Prediction Timeline</a>
+            <a href="{{ url_for('research_metrics') }}" class="nav-link">Research Metrics</a>
+            <a href="{{ url_for('dataset_explorer') }}" class="nav-link">Dataset Explorer</a>
+            <a href="{{ url_for('settings') }}" class="nav-link">Settings</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <h1>Model Explainability</h1>
+            <div class="status-badge">
+                ❖ Decision Transparency Active
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Decision Breakdown (Local XAI)</div>
+                        <div class="card-subtitle">Real-time analysis of the latest flagged anomaly.</div>
+                    </div>
+                </div>
+
+                <div class="incident-info" id="incidentInfo">
+                    <div class="incident-title">Prediction: DDoS Attack Expected</div>
+                    <div class="incident-meta">
+                        <span>Confidence: <strong style="color:var(--danger-color)">94%</strong></span>
+                        <span>Target: 192.168.1.105</span>
+                        <span>Model: LSTM (v2.4)</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <p style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 16px;">
+                        <strong>Why did the AI make this decision?</strong><br>
+                        <span style="color: var(--text-secondary); font-size: 0.85rem;">Red bars increased the attack probability. Green bars decreased it.</span>
+                    </p>
+
+                    <div id="shapContainer">
+                        <div class="shap-row">
+                            <div class="shap-label">SYN Rate</div>
+                            <div class="shap-value">+42.1%</div>
+                            <div class="shap-bar-container">
+                                <div class="shap-bar shap-red" style="width: 42%;"></div>
+                            </div>
+                        </div>
+                        <div class="shap-row">
+                            <div class="shap-label">Connection Freq</div>
+                            <div class="shap-value">+28.5%</div>
+                            <div class="shap-bar-container">
+                                <div class="shap-bar shap-red" style="width: 28.5%;"></div>
+                            </div>
+                        </div>
+                        <div class="shap-row">
+                            <div class="shap-label">Dest Port Div</div>
+                            <div class="shap-value">+15.2%</div>
+                            <div class="shap-bar-container">
+                                <div class="shap-bar shap-red" style="width: 15.2%;"></div>
+                            </div>
+                        </div>
+                        <div class="shap-row">
+                            <div class="shap-label">Flow Duration</div>
+                            <div class="shap-value">-12.0%</div>
+                            <div class="shap-bar-container">
+                                <div class="shap-bar shap-green" style="width: 12%;"></div>
+                            </div>
+                        </div>
+                        <div class="shap-row">
+                            <div class="shap-label">Byte Count</div>
+                            <div class="shap-value">-4.5%</div>
+                            <div class="shap-bar-container">
+                                <div class="shap-bar shap-green" style="width: 4.5%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="impact-legend">
+                        <span>← Decreases Risk</span>
+                        <span>Increases Risk →</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Global Feature Importance</div>
+                        <div class="card-subtitle">Overall factors driving the model's behavior.</div>
+                    </div>
+                </div>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-header">
+                            <span class="feature-name">Packet Rate</span>
+                            <span class="feature-score">0.89</span>
+                        </div>
+                        <div class="feature-track"><div class="feature-fill" style="width: 89%;"></div></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-header">
+                            <span class="feature-name">SYN Packet Count</span>
+                            <span class="feature-score">0.76</span>
+                        </div>
+                        <div class="feature-track"><div class="feature-fill" style="width: 76%; background-color: #374151;"></div></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-header">
+                            <span class="feature-name">Flow Duration</span>
+                            <span class="feature-score">0.65</span>
+                        </div>
+                        <div class="feature-track"><div class="feature-fill" style="width: 65%; background-color: #4b5563;"></div></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-header">
+                            <span class="feature-name">Destination Port Diversity</span>
+                            <span class="feature-score">0.52</span>
+                        </div>
+                        <div class="feature-track"><div class="feature-fill" style="width: 52%; background-color: #6b7280;"></div></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-header">
+                            <span class="feature-name">ACK Rate</span>
+                            <span class="feature-score">0.41</span>
+                        </div>
+                        <div class="feature-track"><div class="feature-fill" style="width: 41%; background-color: #9ca3af;"></div></div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 32px; padding: 16px; background-color: var(--bg-color); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                    <h4 style="font-size: 0.9rem; margin-bottom: 8px;">Model Insights</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                        The model heavily prioritizes timing-based features (Packet Rate, SYN Count) over volumetric features (Total Bytes), indicating high sensitivity to automated botnet behaviors and scan activities.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', path='/js/Dashboard/xai-dashboard.js') }}"></script>
+</body>
+</html>
